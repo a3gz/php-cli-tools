@@ -9,6 +9,12 @@
             "email": "alejandro@roetal.com"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/leafo/scssphp"
+        }
+    ],
     "require": {
         "leafo/scssphp": "^0.7"
     },
