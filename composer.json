@@ -9,7 +9,7 @@
             "email": "alejandro@roetal.com"
         }
     ],
-    "require-dev": {
+    "require": {
         "leafo/scssphp": "^0.7"
     },
     "bin": [
