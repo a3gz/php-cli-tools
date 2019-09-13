@@ -1,0 +1,66 @@
+#!/usr/bin/env php
+<?php
+function main($argv) {
+  array_shift($argv);
+  $specsFileName = array_shift($argv);
+
+  if (pathinfo($specsFileName, PATHINFO_EXTENSION) !== 'json') {
+    throw new \Exception("Invalid specs file, JSON expected.");
+  }
+  $specs = json_decode(file_get_contents($specsFileName), true);
+
+  $options = [
+    '--verbose' => false,
+  ];
+  foreach ($argv as $pn) {
+    $parts = explode('=', $pn);
+    $pn = trim($parts[0]);
+    if (in_array($pn, array_keys($options))) {
+      $options[$pn] = (isset($parts[1]) ? trim($parts[1]) : true);
+    }
+  }
+
+  if (!count($specs)) {
+    if ($options['--verbose'] === true) {
+      echo "No files to copy.\n";
+    }
+    exit(0);
+  }
+
+  $autoloadCandidates = [
+    __DIR__.'/../../../autoload.php',
+    __DIR__.'/../vendor/autoload.php',
+  ];
+  $ready = false;
+  foreach ($autoloadCandidates as $autoload) {
+    if (is_readable($autoload)) {
+      include $autoload;
+      $ready = true;
+      if ($options['--verbose'] === true) {
+        echo "Using autoload: {$autoload}\n";
+      }
+      break;
+    }
+  }
+  if (!$ready) {
+    throw new \Exception('Unable to find autoload.php');
+  }
+
+  foreach ($specs as $src => $tgt) {
+    if ($options['--verbose'] === true) {
+      echo "Copy {$src} ==> {$tgt}\n";
+    }
+    try {
+      copy($src, $tgt);
+      if ($options['--verbose'] === true) {
+        echo "\tOK\n";
+      }
+    } catch(\Exception $e) {
+      if ($options['--verbose'] === true) {
+        echo "\tfailed\n";
+      }
+    }
+  }
+} // main
+
+main($argv);

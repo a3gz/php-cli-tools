@@ -1,5 +1,5 @@
 {
-    "name": "a3gz/cli-tools",
+    "name": "a3gz/php-cli-tools",
     "description": "Various CLI tools for eacy deployment of PHP applications",
     "type": "library",
     "license": "MIT",
@@ -9,5 +9,22 @@
             "email": "alejandro@roetal.com"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "leafo/scssphp": "^0.7"
+    },
+    "bin": [
+        "bin/cli-copy",
+        "bin/cli-minify",
+        "bin/cli-saas2css"
+    ],
+    "scripts": {
+        "test-copy": "php bin/cli-copy cli-copy-files.json",
+        "test-minify": "php bin/cli-minify test/src/ test/dist --filetypes=js --suffix=.min --verbose",
+        "test-css": "php bin/cli-sass2css test/src/ test/dist",
+        "test-all": [
+            "composer run-script test-copy",
+            "composer run-script test-minify",
+            "composer run-script test-css"
+        ]
+    }
 }
