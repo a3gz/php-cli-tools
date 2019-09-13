@@ -15,7 +15,7 @@
     "bin": [
         "bin/cli-copy",
         "bin/cli-minify",
-        "bin/cli-saas2css"
+        "bin/cli-sass2css"
     ],
     "scripts": {
         "test-copy": "php bin/cli-copy cli-copy-files.json",
