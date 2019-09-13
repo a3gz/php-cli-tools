@@ -1,0 +1,13 @@
+{
+    "name": "a3gz/cli-tools",
+    "description": "Various CLI tools for eacy deployment of PHP applications",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alejandro Arbiza",
+            "email": "alejandro@roetal.com"
+        }
+    ],
+    "require": {}
+}
