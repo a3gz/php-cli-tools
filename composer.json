@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "leafo/scssphp": "^0.7"
+        "scssphp/scssphp": "1.0.4"
     },
     "bin": [
         "bin/cli-copy",
