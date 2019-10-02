@@ -26,7 +26,7 @@
     "scripts": {
         "test-copy": "php bin/cli-copy cli-copy-files.json",
         "test-minify": "php bin/cli-minify test/src/ test/dist --filetypes=js --suffix=.min --verbose",
-        "test-css": "php bin/cli-sass2css test/src/ test/dist",
+        "test-css": "php bin/cli-sass2css test/src/ test/dist --formatter=expanded",
         "test-all": [
             "composer run-script test-copy",
             "composer run-script test-minify",

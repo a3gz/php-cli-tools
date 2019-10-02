@@ -2,11 +2,11 @@
 <?php
 array_shift($argv);
 $formatters = [
-  'compact' => '\Leafo\ScssPhp\Formatter\Compact',
-  'compressed' => '\Leafo\ScssPhp\Formatter\Compressed',
-  'crunched' => '\Leafo\ScssPhp\Formatter\Crunched',
-  'expanded' => '\Leafo\ScssPhp\Formatter\Expanded',
-  'nested' => '\Leafo\ScssPhp\Formatter\Nested',
+  'compact' => '\ScssPhp\ScssPhp\Formatter\Compact',
+  'compressed' => '\ScssPhp\ScssPhp\Formatter\Compressed',
+  'crunched' => '\ScssPhp\ScssPhp\Formatter\Crunched',
+  'expanded' => '\ScssPhp\ScssPhp\Formatter\Expanded',
+  'nested' => '\ScssPhp\ScssPhp\Formatter\Nested',
 ];
 $defaultFormatter = 'crunched';
 
@@ -44,7 +44,7 @@ if (!$ready) {
   throw new \Exception('Unable to find autoload.php');
 }
 
-use Leafo\ScssPhp\Compiler;
+use ScssPhp\ScssPhp\Compiler;
 $scss = new Compiler();
 $scss->setImportPaths([$src]);
 $scss->setFormatter($formatters[$options['--formatter']]);
