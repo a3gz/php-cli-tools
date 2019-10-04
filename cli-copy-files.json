@@ -1,4 +1,5 @@
 {
   "/zDev/a3gz/cli-tools/test/src/text1.txt": "/zDev/a3gz/cli-tools/test/dist/text1.txt",
-  "/zDev/a3gz/cli-tools/test/src/text2.txt": "/zDev/a3gz/cli-tools/test/dist/text2-newname.txt"
+  "/zDev/a3gz/cli-tools/test/src/text2.txt": "/zDev/a3gz/cli-tools/test/dist/text2-newname.txt",
+  "/zDev/a3gz/cli-tools/test/src/": "/zDev/a3gz/cli-tools/test/dist/bulk/"
 }

@@ -51,9 +51,35 @@ function main($argv) {
       echo "Copy {$src} ==> {$tgt}\n";
     }
     try {
-      copy($src, $tgt);
-      if ($options['--verbose'] === true) {
-        echo "\tOK\n";
+      if (is_file($src)) {
+        copy($src, $tgt);
+        if ($options['--verbose'] === true) {
+          echo "\tOK\n";
+        }
+      } elseif (is_dir($src) && is_dir($tgt)) {
+        if (substr($src, -1) !== '/') {
+          $src .= '/';
+        }
+        if (substr($tgt, -1) !== '/') {
+          $tgt .= '/';
+        }
+        $dir = scandir($src);
+        foreach ($dir as $fileName) {
+          if (in_array($fileName, ['.', '..'])) continue;
+          $fullSrc = "{$src}{$fileName}";
+          $fullTgt = "{$tgt}{$fileName}";
+          if (is_readable($fullSrc)) {
+            if ($options['--verbose'] === true) {
+              echo "Copy {$fullSrc} ==> {$fullTgt}\n";
+            }
+            copy($fullSrc, $fullTgt);
+            if ($options['--verbose'] === true) {
+              echo "\tOK\n";
+            }
+          }
+        }
+      } else {
+        throw new \Exception('Invalid settings');
       }
     } catch(\Exception $e) {
       if ($options['--verbose'] === true) {
