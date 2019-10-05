@@ -46,28 +46,43 @@ function main($argv) {
     throw new \Exception('Unable to find autoload.php');
   }
 
-  foreach ($specs as $src => $tgt) {
-    if ($options['--verbose'] === true) {
-      echo "Copy {$src} ==> {$tgt}\n";
+  foreach ($specs as $specs) {
+    $src = $specs['src'];
+    $tgt = $specs['dest'];
+    if (substr($tgt, -1) !== '/') {
+      $tgt .= '/';
     }
+    if (!is_dir($tgt)) {
+      mkdir($tgt, 0777, true);
+    }
+    $rename = isset($specs['rename']) ? $specs['rename'] : false;
     try {
       if (is_file($src)) {
-        copy($src, $tgt);
+        $srcName = basename($src);
+        $destName = $srcName;
+        if ($rename !== false) {
+          $destName = $rename;
+        }
+        if ($options['--verbose'] === true) {
+          echo "Copy {$src} ==> {$tgt}{$destName}\n";
+        }
+        copy($src, "{$tgt}{$destName}");
         if ($options['--verbose'] === true) {
           echo "\tOK\n";
         }
-      } elseif (is_dir($src) && is_dir($tgt)) {
+      } elseif (is_dir($src)) {
         if (substr($src, -1) !== '/') {
           $src .= '/';
         }
-        if (substr($tgt, -1) !== '/') {
-          $tgt .= '/';
-        }
         $dir = scandir($src);
-        foreach ($dir as $fileName) {
-          if (in_array($fileName, ['.', '..'])) continue;
-          $fullSrc = "{$src}{$fileName}";
-          $fullTgt = "{$tgt}{$fileName}";
+        foreach ($dir as $srcName) {
+          if (in_array($srcName, ['.', '..'])) continue;
+          $destName = $srcName;
+          if ($rename !== false) {
+            $destName = $rename;
+          }
+          $fullSrc = "{$src}{$srcName}";
+          $fullTgt = "{$tgt}{$destName}";
           if (is_readable($fullSrc)) {
             if ($options['--verbose'] === true) {
               echo "Copy {$fullSrc} ==> {$fullTgt}\n";
