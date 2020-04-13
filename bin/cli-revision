@@ -9,7 +9,7 @@ function main($argv) {
   }
   $path = $argv[0];
   if (substr($path, -1) === '/') {
-    $path = substr($path, 1, -1);
+    $path = substr($path, 0, strlen($path)-1);
   }
   $fileName = null;
   if (count($argv) > 1) {
@@ -21,7 +21,7 @@ function main($argv) {
     exit(1);
   }
   $revision = time();
-  if (!$fileName === null) {
+  if ($fileName === null) {
     $fileName = "{$path}/a3gz-php-cli-tools.revision";
   }
   file_put_contents($fileName, $revision);
