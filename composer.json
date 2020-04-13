@@ -31,6 +31,7 @@
             "composer run-script test-copy",
             "composer run-script test-minify",
             "composer run-script test-css"
-        ]
+        ],
+        "test-revision": "composer run-script cli-revision ./"
     }
 }
