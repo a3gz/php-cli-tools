@@ -1,0 +1,30 @@
+<?php
+function main($argv) {
+  array_shift($argv);
+  if (!count($argv)) {
+    echo "Parameters missing:\n";
+    echo "Use: cli-revision path/to/directory [file-name]\n";
+    echo "\n";
+    exit(1);
+  }
+  $path = $argv[0];
+  if (substr($path, -1) === '/') {
+    $path = substr($path, 1, -1);
+  }
+  $fileName = null;
+  if (count($argv) > 1) {
+    $fileName = $argv[1];
+  }
+  if (!is_dir($path)) {
+    echo "Invalid location: {$path}\n";
+    echo "\n";
+    exit(1);
+  }
+  $revision = time();
+  if (!$fileName === null) {
+    $fileName = "{$path}/a3gz-php-cli-tools.revision";
+  }
+  file_put_contents($fileName, $revision);
+}
+
+main($argv);
