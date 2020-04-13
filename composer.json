@@ -21,7 +21,8 @@
     "bin": [
         "bin/cli-copy",
         "bin/cli-minify",
-        "bin/cli-sass2css"
+        "bin/cli-sass2css",
+        "bin/cli-revision"
     ],
     "scripts": {
         "test-copy": "php bin/cli-copy cli-copy-files.json",
