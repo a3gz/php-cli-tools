@@ -25,7 +25,7 @@
         "bin/cli-revision"
     ],
     "scripts": {
-        "test-copy": "php bin/cli-copy cli-copy-files.json",
+        "test-copy": "php bin/cli-copy test/cli-copy-files.json --verbose",
         "test-minify": "php bin/cli-minify test/src/ test/dist --filetypes=js --suffix=.min --verbose",
         "test-css": "php bin/cli-sass2css test/src/ test/dist --formatter=expanded",
         "test-all": [

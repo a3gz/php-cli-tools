@@ -10,6 +10,7 @@
   },
   {
     "src": "test/src",
-    "dest": "test/dist/bulk/"
+    "dest": "test/dist/bulk/",
+    "recursive": true
   }
 ]
