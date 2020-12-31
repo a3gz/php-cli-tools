@@ -24,7 +24,7 @@ If you write SASS instead of vanilla CSS, then you may want to use the next tool
 Convert all `.scss` files found in the source directory and writes the corresponding `.css` files in the target.
 This tool uses `leafo/scssphp` to make the conversion.
 
-## Revistion
+## Revision
 It may be usefull to have a revision number generated each time we build assets so we can decide whether to push changes to a server or not. 
 
     composer run-script cli-revision path/to/directory [file-name]
