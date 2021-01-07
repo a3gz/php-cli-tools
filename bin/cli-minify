@@ -66,6 +66,7 @@ function main($argv) {
     '--suffix' => '',
     '--filetypes' => false,
     '--verbose' => false,
+    '--create-tree' => true,
   ];
   foreach ($argv as $pn) {
     $parts = explode('=', $pn);
@@ -116,6 +117,9 @@ function main($argv) {
       } else {
         $bext = pathinfo($inputFile, PATHINFO_FILENAME);
         $outputBaseName = "{$bext}{$options['--suffix']}.{$ext}";
+        if (!is_dir($tgt) && isset($options['--create-tree'])) {
+          mkdir($tgt, 0755, true);
+        }
         $fullOutputFile = "{$tgt}/{$outputBaseName}";
         if ($options['--verbose'] === true) {
           echo "\tMinifying: {$inputFile} as {$outputBaseName}...\n";
