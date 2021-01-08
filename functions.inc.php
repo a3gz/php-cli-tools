@@ -1,5 +1,5 @@
 <?php
-function log($text) {
+function consoleLog($text) {
   echo $text;
 }
 
@@ -11,7 +11,7 @@ function terminate($text) {
 function verbose($text) {
   global $options;
   if ($options['--verbose'] === true) {
-    log($text);
+    consoleLog($text);
   }
 }
 

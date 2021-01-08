@@ -36,6 +36,6 @@
             "composer run-script test-scss",
             "composer run-script test-less"
         ],
-        "test-revision": "composer run-script cli-revision ./"
+        "test-revision": "php bin/cli-revision ./"
     }
 }
