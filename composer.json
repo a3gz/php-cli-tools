@@ -16,7 +16,8 @@
         }
     ],
     "require": {
-        "scssphp/scssphp": "1.0.4"
+        "scssphp/scssphp": "1.0.4",
+        "leafo/lessphp": "^0.5.0"
     },
     "bin": [
         "bin/cli-copy",
@@ -27,12 +28,14 @@
     "scripts": {
         "test-copy": "php bin/cli-copy test/cli-copy-files.json --verbose",
         "test-minify": "php bin/cli-minify test/src/ test/dist --filetypes=js --suffix=.min --verbose",
-        "test-css": "php bin/cli-sass2css test/src/ test/dist --formatter=expanded",
+        "test-scss": "php bin/cli-sass2css test/src/scss/ test/dist --formatter=expanded --verbose",
+        "test-less": "php bin/cli-less2css test/src/less/ test/dist --formatter=expanded --verbose",
         "test-all": [
             "composer run-script test-copy",
             "composer run-script test-minify",
-            "composer run-script test-css"
+            "composer run-script test-scss",
+            "composer run-script test-less"
         ],
-        "test-revision": "composer run-script cli-revision ./"
+        "test-revision": "php bin/cli-revision ./"
     }
 }
