@@ -1,5 +1,7 @@
 #!/usr/bin/env php
 <?php
+include dirname(__DIR__) . '/functions.inc.php';
+
 array_shift($argv);
 $formatters = [
   'compact' => '\ScssPhp\ScssPhp\Formatter\Compact',
@@ -34,14 +36,12 @@ foreach ($autoloadCandidates as $autoload) {
   if (is_readable($autoload)) {
     include $autoload;
     $ready = true;
-    if ($options['--verbose'] === true) {
-      echo "Using autoload: {$autoload}\n";
-    }
+    verbose("Using autoload: {$autoload}\n");
     break;
   }
 }
 if (!$ready) {
-  throw new \Exception('Unable to find autoload.php');
+  terminate('Unable to find autoload.php');
 }
 
 use ScssPhp\ScssPhp\Compiler;
@@ -63,9 +63,13 @@ foreach ($files as $inputFile) {
   if (is_readable($fullSourceFile)) {
     $outputBaseName = str_replace('.scss', "{$options['--suffix']}.css", $inputFile);
     $outputFilename = "{$tgt}/{$outputBaseName}";
-    if ($options['--verbose'] === true) {
-      echo "\tCompiling: {$inputFile} as {$outputBaseName}...\n";
+
+    if (!is_dir($tgt)) {
+      verbose("\tCreate dir: {$tgt}\n");
+      mkdir($tgt, 0755, true);
     }
+
+    verbose("\tCompiling: {$inputFile} as {$outputBaseName}...\n");
     $output = $scss->compile('@import "'. $inputFile .'";');
     file_put_contents($outputFilename, $output);
   }

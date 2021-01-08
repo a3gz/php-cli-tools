@@ -1,12 +1,13 @@
 #!/usr/bin/env php
 <?php
+include dirname(__DIR__) . '/functions.inc.php';
+
 function main($argv) {
   array_shift($argv);
   if (!count($argv)) {
-    echo "Parameters missing:\n";
-    echo "Use: cli-revision path/to/directory [file-name]\n";
-    echo "\n";
-    exit(1);
+    log("Parameters missing:\n");
+    log("Use: cli-revision path/to/directory [file-name]\n");
+    terminate("\n");
   }
   $path = $argv[0];
   if (substr($path, -1) === '/') {
@@ -17,9 +18,8 @@ function main($argv) {
     $fileName = $argv[1];
   }
   if (!is_dir($path)) {
-    echo "Invalid location: {$path}\n";
-    echo "\n";
-    exit(1);
+    log("Invalid location: {$path}\n");
+    terminate("\n");
   }
   $revision = time();
   if ($fileName === null) {

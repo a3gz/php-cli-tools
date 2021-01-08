@@ -1,5 +1,7 @@
 #!/usr/bin/env php
 <?php
+include dirname(__DIR__) . '/functions.inc.php';
+
 function minify($c) {
   $minified = preg_replace('#^\s*//.+$#m', "", $c);
   $ptrn1 = <<<'EOS'
@@ -92,14 +94,12 @@ function main($argv) {
     if (is_readable($autoload)) {
       include $autoload;
       $ready = true;
-      if ($options['--verbose'] === true) {
-        echo "Using autoload: {$autoload}\n";
-      }
+      verbose("Using autoload: {$autoload}\n");
       break;
     }
   }
   if (!$ready) {
-    throw new \Exception('Unable to find autoload.php');
+    terminate('Unable to find autoload.php');
   }
   
   $files = scandir($src);
@@ -121,17 +121,13 @@ function main($argv) {
           mkdir($tgt, 0755, true);
         }
         $fullOutputFile = "{$tgt}/{$outputBaseName}";
-        if ($options['--verbose'] === true) {
-          echo "\tMinifying: {$inputFile} as {$outputBaseName}...\n";
-        }
+        verbose("\tMinifying: {$inputFile} as {$outputBaseName}...\n");
         try {
           $content = file_get_contents($fullSourceFile);
           $minifiedContent = minify($content);
           file_put_contents($fullOutputFile, $minifiedContent);
         } catch (\Exception $e) {
-          if ($options['--verbose'] === true) {
-            echo "\t{$e->getMessage()}. Ignoring.\n";
-          }
+          verbose("\t{$e->getMessage()}. Ignoring.\n");
         }
       }
     }

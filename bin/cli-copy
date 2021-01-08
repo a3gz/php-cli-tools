@@ -1,5 +1,7 @@
 #!/usr/bin/env php
 <?php
+include dirname(__DIR__) . '/functions.inc.php';
+
 function copyDir($src, $tgt, $recursive = false, $level = 1) {
   if (substr($src, -1) !== '/') {
     $src .= '/';
@@ -22,6 +24,7 @@ function copyDir($src, $tgt, $recursive = false, $level = 1) {
     $tab = str_repeat("\t", $level);
     if (is_readable($fullSrc) && !is_dir($fullSrc)) {
       if (!is_dir($tgt)) {
+        verbose("\tCreate dir: {$tgt}\n");
         mkdir($tgt, 0755, true);
       }
       verbose("{$tab}Copy {$fullSrc} ==> {$fullTgt}\n");
@@ -36,7 +39,7 @@ function makeOptions($argv) {
   $specsFileName = array_shift($argv);
 
   if (pathinfo($specsFileName, PATHINFO_EXTENSION) !== 'json') {
-    throw new \Exception("Invalid specs file, JSON expected.");
+    terminate("Invalid specs file, JSON expected.");
   }
   $specs = json_decode(file_get_contents($specsFileName), true);
 
@@ -59,13 +62,6 @@ function makeOptions($argv) {
     exit(0);
   }
   return $options;
-}
-
-function verbose($text) {
-  global $options;
-  if ($options['--verbose'] === true) {
-    echo $text;
-  }
 }
 
 function main() {
