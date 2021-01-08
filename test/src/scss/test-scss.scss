@@ -1,0 +1,12 @@
+$height: 100%;
+$margin: 0;
+$fontWeight: bold;
+
+html {
+  height: $height;
+}
+
+p {
+  margin: $margin;
+  font-weight: $fontWeight;
+}
