@@ -23,6 +23,7 @@
         "bin/cli-copy",
         "bin/cli-minify",
         "bin/cli-sass2css",
+        "bin/cli-less2css",
         "bin/cli-revision"
     ],
     "scripts": {
