@@ -60,6 +60,7 @@ EOS;
 } // minify()
 
 function main($argv) {
+  global $options;
   array_shift($argv);
   $src = array_shift($argv);
   $tgt = array_shift($argv);
@@ -134,4 +135,5 @@ function main($argv) {
   }
 } // main
 
+$options = [];
 main($argv);
