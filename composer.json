@@ -1,6 +1,6 @@
 {
     "name": "a3gz/php-cli-tools",
-    "description": "Various CLI tools for eacy deployment of PHP applications",
+    "description": "Various CLI tools for easy deployment of PHP applications",
     "type": "library",
     "license": "MIT",
     "authors": [
