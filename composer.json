@@ -1,42 +1,28 @@
 {
-    "name": "a3gz/php-cli-tools",
-    "description": "Various CLI tools for easy deployment of PHP applications",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Alejandro Arbiza",
-            "email": "alejandro@roetal.com"
-        }
-    ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/leafo/scssphp"
-        }
-    ],
-    "require": {
-        "scssphp/scssphp": "1.0.4",
-        "leafo/lessphp": "^0.5.0"
-    },
-    "bin": [
-        "bin/cli-copy",
-        "bin/cli-minify",
-        "bin/cli-sass2css",
-        "bin/cli-less2css",
-        "bin/cli-revision"
-    ],
-    "scripts": {
-        "test-copy": "php bin/cli-copy test/cli-copy-files.json --verbose",
-        "test-minify": "php bin/cli-minify test/src/ test/dist --filetypes=js --suffix=.min --verbose",
-        "test-scss": "php bin/cli-sass2css test/src/scss/ test/dist --formatter=expanded --verbose",
-        "test-less": "php bin/cli-less2css test/src/less/ test/dist --formatter=expanded --verbose",
-        "test-all": [
-            "composer run-script test-copy",
-            "composer run-script test-minify",
-            "composer run-script test-scss",
-            "composer run-script test-less"
-        ],
-        "test-revision": "php bin/cli-revision ./"
+  "name": "a3gz/php-cli-tools",
+  "description": "Command line tools to prepare Web application assets for deployment",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alejandro Arbiza",
+      "email": "alejandro@roetal.com"
     }
+  ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/leafo/scssphp"
+    }
+  ],
+  "require-dev": {
+    "scssphp/scssphp": "1.0.4",
+    "leafo/lessphp": "^0.5.0"
+  },
+  "bin": [
+    "bin/cli-run"
+  ],
+  "scripts": {
+    "test-run": "php bin/cli-run test/php-cli-tools.config.json "
+  }
 }
