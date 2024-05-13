@@ -1,0 +1,60 @@
+{
+  "01": [
+    {
+      "runner": "less2css",
+      "src": "test/src/less/",
+      "dest": "test/dist",
+      "formatter": "expanded",
+      "verbose": true
+    }
+  ],
+  "02": [
+    {
+      "runner": "minify",
+      "src": "test/src/",
+      "dest": "test/dist/",
+      "filetypes": ["js"],
+      "suffix": ".min",
+      "verbose": true
+    }
+  ],
+  "03": [
+    {
+      "runner": "revision",
+      "dest": "./"
+    }
+  ],
+  "04": [
+    {
+      "runner": "sass2css",
+      "src": "text/src/scss/",
+      "dest": "test/dist",
+      "formatter": "expanded",
+      "verbose": true
+    }
+  ],
+  "05": [
+    {
+      "runner": "copy",
+      "src": "test/src/text1.txt",
+      "dest": "test/dist/",
+      "verbose": false,
+      "recursive": false
+    },
+    {
+      "runner": "copy",
+      "src": "test/src/text2.txt",
+      "dest": "test/dist/",
+      "rename": "text2-newname.txt",
+      "verbose": true,
+      "recursive": false
+    },
+    {
+      "runner": "copy",
+      "src": "test/src",
+      "dest": "test/dist/bulk/",
+      "verbose": false,
+      "recursive": true
+    }
+  ]
+}
