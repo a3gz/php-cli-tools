@@ -1,0 +1,38 @@
+#!/usr/bin/env php
+<?php
+include dirname(__DIR__) . '/inc.php';
+
+function main(Config $config) {
+  $autoloadCandidates = [
+    __DIR__ . '/../../../autoload.php',
+    __DIR__ . '/../vendor/autoload.php',
+  ];
+  $ready = false;
+  foreach ($autoloadCandidates as $autoload) {
+    if (is_readable($autoload)) {
+      include $autoload;
+      $ready = true;
+      Console::log("Using autoload: {$autoload}\n");
+      break;
+    }
+  }
+  if (!$ready) {
+    throw new \Exception('Unable to find autoload.php');
+  }
+
+  foreach ($config as $groupId => $tasks) {
+    foreach ($tasks as $task) {
+      $runnerId = RunnerValidator::extractRunnerId($task);
+      if (!$runnerId) {
+        throw new \Exception("Missing or invalid runner ID in task {$groupId}");
+      }
+      $runner = Factory::makeRunner($runnerId);
+      if (!$runner) {
+        throw new \Exception("Failed to create a runner from id: {$runnerId}");
+      }
+      $runner->withConfigs($task)->run();
+    }
+  }
+}
+
+main(Factory::makeConfig($argv));
