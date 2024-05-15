@@ -7,6 +7,13 @@ abstract class AbstractRunner {
   protected $config;
 
   /**
+   * @return array
+   */
+  protected function getConfig() {
+    return $this->config;
+  }
+
+  /**
    * @return string
    */
   abstract public function getId();
@@ -22,27 +29,22 @@ abstract class AbstractRunner {
     return $o;
   }
 
-  private function isVerbose() {
-    if (!isset($this->config)
-      || empty($this->config)
-      || !is_array($this->config)
-      || !isset($this->config['verbose'])
+  protected function isVerbose() {
+    $config = $this->config;
+    if (!isset($config)
+      || empty($config)
+      || !is_array($config)
+      || !isset($config['verbose'])
     ) {
       return false;
     }
-    return $this->config['verbose'] === true;
+    return $config['verbose'] === true;
   }
 
   abstract public function run();
 
-  protected function verbose($msg) {
-    if ($this->isVerbose()) {
-      Console::log($msg);
-    }
-  }
-
   /**
-   * @param array $config
+   * @param Config $config
    */
   public function withConfig($config) {
     $clone = clone $this;

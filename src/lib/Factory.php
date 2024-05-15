@@ -10,15 +10,15 @@ class Factory {
 
   static public function makeRunner($runnerId) {
     if ($runnerId === "copy") {
-      return new CopyRunner($params);
+      return new CopyRunner();
     } elseif ($runnerId == "minify") {
-      return new MinifyRunner($params);
+      return new MinifyRunner();
     } elseif ($runnerId == "revision") {
-      return new RevisionRunner($params);
+      return new RevisionRunner();
     } elseif ($runnerId == "less2css") {
-      return new Less2CssRunner($params);
-    } elseif ($runnerId == "scss2css") {
-      return new Scss2CssRunner($params);
+      return new Less2CssRunner();
+    } elseif ($runnerId == "sass2css") {
+      return new Sass2CssRunner();
     }
     return null;
   }

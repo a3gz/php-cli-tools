@@ -1,8 +1,8 @@
 #!/usr/bin/env php
 <?php
-include dirname(__DIR__) . '/inc.php';
+include dirname(__DIR__) . '/src/inc.php';
 
-function main(Config $config) {
+function main($config) {
   $autoloadCandidates = [
     __DIR__ . '/../../../autoload.php',
     __DIR__ . '/../vendor/autoload.php',
@@ -20,7 +20,7 @@ function main(Config $config) {
     throw new \Exception('Unable to find autoload.php');
   }
 
-  foreach ($config as $groupId => $tasks) {
+  foreach ($config->get() as $groupId => $tasks) {
     foreach ($tasks as $task) {
       $runnerId = RunnerValidator::extractRunnerId($task);
       if (!$runnerId) {
@@ -30,7 +30,8 @@ function main(Config $config) {
       if (!$runner) {
         throw new \Exception("Failed to create a runner from id: {$runnerId}");
       }
-      $runner->withConfigs($task)->run();
+      Console::warning("Run: {$groupId} > {$runnerId}");
+      $runner->withConfig($task)->run();
     }
   }
 }

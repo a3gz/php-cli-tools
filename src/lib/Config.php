@@ -1,5 +1,5 @@
 <?php
-namespace Config {
+class Config {
   /**
    * @var array
    */
@@ -13,6 +13,10 @@ namespace Config {
       throw new \Exception("Configuration file in unreachable: {$configFileName}");
     }
   
-    $this->data = json_decode(file_get_contents($configFileName));
+    $this->data = json_decode(file_get_contents($configFileName), true);
+  }
+
+  public function get() {
+    return $this->data;
   }
 }
