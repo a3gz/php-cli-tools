@@ -38,7 +38,7 @@
       "runner": "copy",
       "src": "test/src/text1.txt",
       "dest": "test/dist/",
-      "verbose": false,
+      "verbose": true,
       "recursive": false
     },
     {
@@ -53,7 +53,7 @@
       "runner": "copy",
       "src": "test/src",
       "dest": "test/dist/bulk/",
-      "verbose": false,
+      "verbose": true,
       "recursive": true
     }
   ]

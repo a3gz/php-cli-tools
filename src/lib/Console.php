@@ -1,4 +1,7 @@
 <?php
+
+namespace PhpCliTools;
+
 // https://misc.flogisoft.com/bash/tip_colors_and_formatting
 class Console {
   static public function danger() {

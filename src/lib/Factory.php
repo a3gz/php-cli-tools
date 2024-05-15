@@ -1,5 +1,7 @@
 <?php
 
+namespace PhpCliTools;
+
 class Factory {
   /**
    * @return Config

@@ -1,5 +1,7 @@
 <?php
 
+namespace PhpCliTools;
+
 class CopyRunner extends AbstractRunner {
   public function getId() {
     return 'copy';

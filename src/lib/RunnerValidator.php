@@ -1,5 +1,7 @@
 <?php
 
+namespace PhpCliTools;
+
 class RunnerValidator {
   static public function extractRunnerId($task) {
     $r = null;

@@ -1,4 +1,6 @@
 <?php
+namespace PhpCliTools;
+
 class Config {
   /**
    * @var array

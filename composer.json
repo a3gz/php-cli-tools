@@ -15,6 +15,11 @@
       "url": "https://github.com/leafo/scssphp"
     }
   ],
+  "autoload-dev": {
+    "psr-4": {
+      "PhpCliTools\\": "src/lib/"
+    }
+  },
   "require-dev": {
     "scssphp/scssphp": "1.0.4",
     "leafo/lessphp": "^0.5.0"

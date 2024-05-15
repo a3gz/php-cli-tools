@@ -1,5 +1,7 @@
 <?php
 
+namespace PhpCliTools;
+
 abstract class AbstractRunner {
   /**
    * @var array
