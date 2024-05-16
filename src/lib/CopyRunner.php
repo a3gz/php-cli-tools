@@ -3,10 +3,6 @@
 namespace PhpCliTools;
 
 class CopyRunner extends AbstractRunner {
-  public function getId() {
-    return 'copy';
-  }
-
   protected function copyDir($src, $tgt, $recursive = false, $level = 0) {
     if (substr($src, -1) !== '/') {
       $src .= '/';
@@ -58,20 +54,34 @@ class CopyRunner extends AbstractRunner {
     }
   }
 
-  public function run() {
-    $specs = $this->getConfig();
-    $src = $specs['src'];
-    $tgt = $specs['dest'];
-    $recursive = isset($specs['recursive'])
-      ? boolval($specs['recursive'])
+  public function getId() {
+    return 'copy';
+  }
+
+  private function getRename() {
+    return isset($this->config['rename']) && is_string($this->config['rename'])
+      ? trim($this->config['rename'])
       : false;
+  }
+
+  private function isRecursive() {
+    return isset($this->config['recursive'])
+      ? boolval($this->config['recursive'])
+      : false;
+  }
+
+  public function run() {
+    $cfg = $this->getConfig();
+    $src = $this->getSource();
+    $tgt = $this->getDestination();
+    $recursive = $this->isRecursive();
     if (substr($tgt, -1) !== '/') {
       $tgt .= '/';
     }
     if (!is_dir($tgt)) {
       mkdir($tgt, 0755, true);
     }
-    $rename = isset($specs['rename']) ? $specs['rename'] : false;
+    $rename = $this->getRename();
     try {
       if (is_file($src)) {
         $srcName = basename($src);
