@@ -2,8 +2,8 @@
   "01": [
     {
       "runner": "less2css",
-      "source": "test/src/less/",
-      "destination": "test/dist",
+      "from": "test/src/less/",
+      "to": "test/dist/",
       "formatter": "compressed",
       "verbose": true
     }
@@ -11,24 +11,25 @@
   "02": [
     {
       "runner": "minify",
-      "source": "test/src/",
-      "destination": "test/dist/",
-      "filetypes": ["js"],
+      "from": "test/src/",
+      "to": "test/dist/",
+      "fileTypes": ["js"],
       "suffix": ".min",
+      "addBuildNumber": false,
       "verbose": true
     }
   ],
   "03": [
     {
       "runner": "revision",
-      "destination": "./"
+      "to": "./"
     }
   ],
   "04": [
     {
       "runner": "sass2css",
-      "source": "test/src/scss/",
-      "destination": "test/dist",
+      "from": "test/src/scss/",
+      "to": "test/dist/",
       "formatter": "crunched",
       "verbose": true
     }
@@ -36,23 +37,25 @@
   "05": [
     {
       "runner": "copy",
-      "source": "test/src/text1.txt",
-      "destination": "test/dist/",
+      "from": "test/src",
+      "to": "test/dist/",
+      "file": "text1.txt",
       "verbose": true,
       "recursive": false
     },
     {
       "runner": "copy",
-      "source": "test/src/text2.txt",
-      "destination": "test/dist/",
+      "from": "test/src/",
+      "to": "test/dist/",
+      "file": "text2.txt",
       "rename": "text2-newname.txt",
       "verbose": true,
       "recursive": false
     },
     {
       "runner": "copy",
-      "source": "test/src",
-      "destination": "test/dist/bulk/",
+      "from": "test/src",
+      "to": "test/dist/bulk/",
       "verbose": true,
       "recursive": true
     }

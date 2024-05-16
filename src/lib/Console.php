@@ -24,6 +24,14 @@ class Console {
     echo "\n";
   }
 
+  /**
+   * @param int $level
+   * @return string
+   */
+  static public function tab($level) {
+    return str_repeat("  ", $level);
+  }
+
   static public function warning() {
     $args = func_get_args();
     if (count($args)) {

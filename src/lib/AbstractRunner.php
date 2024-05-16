@@ -20,10 +20,13 @@ abstract class AbstractRunner {
    */
   protected function getDestination() {
     $r = '';
-    if (isset($this->config['destination'])
-      && is_string($this->config['destination'])
+    if (isset($this->config['to'])
+      && is_string($this->config['to'])
     ) {
-      $r = trim($this->config['destination']);
+      $r = trim($this->config['to']);
+      if (substr($r, -1) !== '/') {
+        $r .= '/';
+      }
     }
     return $r;
   }
@@ -38,8 +41,11 @@ abstract class AbstractRunner {
    */
   protected function getSource() {
     $r = '';
-    if (isset($this->config['source']) && is_string($this->config['source'])) {
-      $r = trim($this->config['source']);
+    if (isset($this->config['from']) && is_string($this->config['from'])) {
+      $r = trim($this->config['from']);
+      if (substr($r, -1) !== '/') {
+        $r .= '/';
+      }
     }
     return $r;
   }
