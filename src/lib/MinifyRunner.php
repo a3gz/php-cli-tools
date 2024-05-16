@@ -95,7 +95,8 @@ class MinifyRunner extends AbstractRunner {
   }
 
   private function minify($c) {
-    $minified = preg_replace('#^\s*//.+$#m', "", $c);
+    $minified = $c;
+    $ptrn0 = '/(?:(?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:(?<!\:|\\\|\'|\")\/\/.*))/';
     $ptrn1 = <<<'EOS'
 (?sx)
 # quotes
@@ -146,6 +147,7 @@ EOS;
 # double spaces to single
 (\s)\s+
 EOS;
+    $minified = preg_replace($ptrn0, '', $minified);
     $minified = preg_replace("%$ptrn1%", '$1', $minified);
     $minified = preg_replace("%$ptrn2%", '$1$2$3$4$5$6$7', $minified);
     return $minified;
