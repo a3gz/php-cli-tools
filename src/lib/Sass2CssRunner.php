@@ -46,7 +46,6 @@ class Sass2CssRunner extends AbstractRunner {
   }
 
   public function run() {
-    $cfg = $this->getConfig();
     $src = $this->getSource();
     $tgt = $this->getDestination();
     $suffix = $this->getSuffix();
