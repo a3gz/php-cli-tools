@@ -18,7 +18,31 @@ abstract class AbstractRunner {
   /**
    * @return string
    */
+  protected function getDestination() {
+    $r = '';
+    if (isset($this->config['destination'])
+      && is_string($this->config['destination'])
+    ) {
+      $r = trim($this->config['destination']);
+    }
+    return $r;
+  }
+
+  /**
+   * @return string
+   */
   abstract public function getId();
+
+  /**
+   * @return string
+   */
+  protected function getSource() {
+    $r = '';
+    if (isset($this->config['source']) && is_string($this->config['source'])) {
+      $r = trim($this->config['source']);
+    }
+    return $r;
+  }
 
   /**
    * @return AbstractRunner
