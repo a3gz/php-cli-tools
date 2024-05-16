@@ -10,9 +10,9 @@ class CopyRunner extends AbstractRunner {
     if (substr($tgt, -1) !== '/') {
       $tgt .= '/';
     }
-    $tab = str_repeat("\t", $level);
+    $tab = Console::tab($level);
     if ($this->isVerbose()) {
-      $msg = "{$tab}Copy Dir: {$src} ==> {$tgt}";
+      $msg = "{$tab}Dir Copy: {$src} ==> {$tgt}";
       Console::log($msg);
     }
 
@@ -29,7 +29,7 @@ class CopyRunner extends AbstractRunner {
       }
 
       if (is_readable($fullSrc) && !is_dir($fullSrc)) {
-        $tab = str_repeat("\t", $level+1);
+        $tab = Console::tab($level+1);
         if (!is_dir($tgt)) {
           $created = mkdir($tgt, 0755, true);
           if ($this->isVerbose()) {
