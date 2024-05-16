@@ -3,6 +3,8 @@
 namespace PhpCliTools;
 
 class CopyRunner extends AbstractRunner {
+  const ALL_FILES = '*';
+
   protected function copyDir($src, $tgt, $recursive = false, $level = 0) {
     if (substr($src, -1) !== '/') {
       $src .= '/';
@@ -54,6 +56,18 @@ class CopyRunner extends AbstractRunner {
     }
   }
 
+  /**
+   * @return string
+   */
+  private function getFile() {
+    $r = self::ALL_FILES;
+    $file = isset($this->config['file']) ? trim($this->config['file']) : '';
+    if (!empty($file)) {
+      $r = $file;
+    }
+    return $r;
+  }
+
   public function getId() {
     return 'copy';
   }
@@ -74,6 +88,7 @@ class CopyRunner extends AbstractRunner {
     $cfg = $this->getConfig();
     $src = $this->getSource();
     $tgt = $this->getDestination();
+    $singleFile = $this->getFile();
     $recursive = $this->isRecursive();
     if (substr($tgt, -1) !== '/') {
       $tgt .= '/';
@@ -83,15 +98,16 @@ class CopyRunner extends AbstractRunner {
     }
     $rename = $this->getRename();
     try {
-      if (is_file($src)) {
-        $srcName = basename($src);
-        $destName = $srcName;
+      $fullSingleFile = "{$src}{$singleFile}";
+      if (is_file($fullSingleFile)) {
+        $srcName = $singleFile;
+        $destName = $singleFile;
         if ($rename !== false) {
           $destName = $rename;
         }
-        $copied = copy($src, "{$tgt}{$destName}");
+        $copied = copy($fullSingleFile, "{$tgt}{$destName}");
         if ($this->isVerbose()) {
-          $msg = "Copy {$src} ==> {$tgt}{$destName}";
+          $msg = "Copy {$fullSingleFile} ==> {$tgt}{$destName}";
           if ($copied) {
             Console::log("{$msg} : OK");
           } else {
