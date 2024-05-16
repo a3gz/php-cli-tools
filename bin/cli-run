@@ -23,7 +23,11 @@ if (!$autoloadFound) {
 }
 
 function main($config) {
-  foreach ($config->get() as $groupId => $tasks) {
+  $specificTasks = $config->hasSpecificTasks() ? $config->getTasks() : null;
+  foreach ($config->getData() as $groupId => $tasks) {
+    if ($specificTasks !== null && !in_array($groupId, $specificTasks)) {
+      continue;
+    }
     foreach ($tasks as $task) {
       $runnerId = RunnerValidator::extractRunnerId($task);
       if (!$runnerId) {

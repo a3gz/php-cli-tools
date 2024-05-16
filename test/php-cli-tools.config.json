@@ -1,4 +1,12 @@
 {
+  "specific-task": [
+    {
+      "runner": "revision",
+      "to": "test/dist/revisions",
+      "file": "single-run.revision",
+      "verbose": true
+    }
+  ],
   "01": [
     {
       "runner": "less2css",

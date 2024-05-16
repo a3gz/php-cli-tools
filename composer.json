@@ -32,6 +32,7 @@
     "bin/cli-run"
   ],
   "scripts": {
-    "test-run": "php bin/cli-run test/php-cli-tools.config.json "
+    "test-runone": "php bin/cli-run test/php-cli-tools.config.json specific-task",
+    "test-runall": "php bin/cli-run test/php-cli-tools.config.json "
   }
 }
