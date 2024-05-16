@@ -29,7 +29,7 @@
       "runner": "sass2css",
       "source": "test/src/scss/",
       "destination": "test/dist",
-      "formatter": "expanded",
+      "formatter": "crunched",
       "verbose": true
     }
   ],
