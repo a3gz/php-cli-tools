@@ -22,7 +22,9 @@
   "03": [
     {
       "runner": "revision",
-      "to": "./"
+      "to": "test/dist/revisions",
+      "file": "php-cli-tools.revision",
+      "verbose": true
     }
   ],
   "04": [
