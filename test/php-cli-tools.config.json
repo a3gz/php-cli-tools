@@ -27,7 +27,7 @@
   "04": [
     {
       "runner": "sass2css",
-      "source": "text/src/scss/",
+      "source": "test/src/scss/",
       "destination": "test/dist",
       "formatter": "expanded",
       "verbose": true
