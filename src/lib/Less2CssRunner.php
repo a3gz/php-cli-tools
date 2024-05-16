@@ -62,15 +62,19 @@ class Less2CssRunner extends AbstractRunner {
         $outputFilename = "{$tgt}/{$outputBaseName}";
 
         if (!is_dir($tgt)) {
+          $created = mkdir($tgt, 0755, true);
           if ($this->isVerbose()) {
             $msg = "Create dir: {$tgt}";
-            Console::log($msg);
+            if ($created) {
+              Console::log("{$msg} : OK");
+            } else {
+              Console::danger("{$msg} : FAILED");
+            }
           }
-          mkdir($tgt, 0755, true);
         }
 
         if ($this->isVerbose()) {
-          $msg = "\tCompile: {$inputFile} as {$outputBaseName}";
+          $msg = "Compile: {$inputFile} as {$outputBaseName}";
           Console::log($msg);
         }
 
