@@ -94,7 +94,15 @@ class CopyRunner extends AbstractRunner {
       $tgt .= '/';
     }
     if (!is_dir($tgt)) {
-      mkdir($tgt, 0755, true);
+      $created = mkdir($tgt, 0755, true);
+      if ($this->isVerbose()) {
+        $msg = "Create dir: {$tgt}";
+        if ($created) {
+          Console::log("{$msg} : OK");
+        } else {
+          Console::danger("{$msg} : FAILED");
+        }
+      }
     }
     $rename = $this->getRename();
     try {
