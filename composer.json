@@ -24,7 +24,7 @@
       "PhpCliTools\\": "src/lib/"
     }
   },
-  "require-dev": {
+  "require": {
     "scssphp/scssphp": "1.0.4",
     "leafo/lessphp": "dev-master"
   },
