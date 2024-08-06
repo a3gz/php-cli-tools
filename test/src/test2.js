@@ -1,5 +1,10 @@
-function main() {
-  console.log("test");
+function doLog() {
+  console.log('Test');  
 }
 
-main();
+function main() {
+  doLog(); // Inline comment
+  alert('Something else');
+}
+
+main(); // Run main

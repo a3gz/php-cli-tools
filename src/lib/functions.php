@@ -8,11 +8,8 @@ function terminate($text) {
   exit(1);
 }
 
-function verbose($text) {
-  global $options;
-  if ($options['--verbose'] === true) {
+function verbose($text, $verbose = true) {
+  if ($verbose === true) {
     consoleLog($text);
   }
 }
-
-// EOF

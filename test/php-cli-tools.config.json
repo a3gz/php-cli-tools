@@ -1,0 +1,73 @@
+{
+  "specific-task": [
+    {
+      "runner": "revision",
+      "to": "test/dist/revisions",
+      "file": "single-run.revision",
+      "verbose": true
+    }
+  ],
+  "01": [
+    {
+      "runner": "less2css",
+      "from": "test/src/less/",
+      "to": "test/dist/",
+      "formatter": "compressed",
+      "verbose": true
+    }
+  ],
+  "02": [
+    {
+      "runner": "minify",
+      "from": "test/src/",
+      "to": "test/dist/",
+      "fileTypes": ["js"],
+      "suffix": ".min",
+      "addBuildNumber": false,
+      "verbose": true
+    }
+  ],
+  "03": [
+    {
+      "runner": "revision",
+      "to": "test/dist/revisions",
+      "file": "php-cli-tools.revision",
+      "verbose": true
+    }
+  ],
+  "04": [
+    {
+      "runner": "sass2css",
+      "from": "test/src/scss/",
+      "to": "test/dist/",
+      "formatter": "crunched",
+      "verbose": true
+    }
+  ],
+  "05": [
+    {
+      "runner": "copy",
+      "from": "test/src",
+      "to": "test/dist/",
+      "file": "text1.txt",
+      "verbose": true,
+      "recursive": false
+    },
+    {
+      "runner": "copy",
+      "from": "test/src/",
+      "to": "test/dist/",
+      "file": "text2.txt",
+      "rename": "text2-newname.txt",
+      "verbose": true,
+      "recursive": false
+    },
+    {
+      "runner": "copy",
+      "from": "test/src",
+      "to": "test/dist/bulk/",
+      "verbose": true,
+      "recursive": true
+    }
+  ]
+}
