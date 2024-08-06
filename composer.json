@@ -26,7 +26,7 @@
   },
   "require": {
     "scssphp/scssphp": "1.0.4",
-    "leafo/lessphp": "0.6.0"
+    "leafo/lessphp": "0.7.0"
   },
   "bin": [
     "bin/cli-run"
