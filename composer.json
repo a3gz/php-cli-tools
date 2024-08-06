@@ -19,7 +19,7 @@
       "url": "https://github.com/a3gz/lessphp"
     }
   ],
-  "autoload-dev": {
+  "autoload": {
     "psr-4": {
       "PhpCliTools\\": "src/lib/"
     }
